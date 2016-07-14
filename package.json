@@ -1,0 +1,25 @@
+{
+  "name": "reconf-nodejs",
+  "version": "1.0.0",
+  "description": "Reconf client for nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blocks4j/reconf-nodejs.git"
+  },
+  "keywords": [
+    "reconf",
+    "remote",
+    "editor",
+    "blocks4j"
+  ],
+  "author": "Julio Corradi <jgcorradi@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/blocks4j/reconf-nodejs/issues"
+  },
+  "homepage": "https://github.com/blocks4j/reconf-nodejs#readme"
+}
