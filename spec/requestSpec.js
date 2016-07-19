@@ -36,14 +36,14 @@ describe('Request', () => {
 
         it('When Request module is called with a string that seens like URL', (done) => {
             Request('http://lorem ipsum dolor').catch(err => {
-                expect(err.message).toBe('Request HTTP protocol must be valid');
+                expect(err.message).toBe('Request URL must be valid');
                 done();
             });
         });
 
         it('When Request module is called with a string that doesn\'t represent a URL', (done) => {
             Request('lorem ipsum dolor').catch(err => {
-                expect(err.message).toBe('Request HTTP protocol must be valid');
+                expect(err.message).toBe('Request URL must be valid');
                 done();
             });
         });
