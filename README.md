@@ -3,6 +3,7 @@
 </p>
 
 [![Build Status](https://travis-ci.org/blocks4j/reconf-nodejs.svg?branch=master)](https://travis-ci.org/blocks4j/reconf-nodejs) [![Dependency Status](https://david-dm.org/blocks4j/reconf-nodejs.svg)](https://david-dm.org/blocks4j/reconf-nodejs)
+[![devDependency Status](https://david-dm.org/blocks4j/reconf-nodejs/dev-status.svg)](https://david-dm.org/blocks4j/reconf-nodejs#info=devDependencies)
 
 # ReConf NodeJS
 The ReConf NodeJS Project is a module that provides an easy interface between the ReConf Web Service and any other NodeJS applications that share the same product properties.
