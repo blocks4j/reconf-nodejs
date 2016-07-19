@@ -17,7 +17,7 @@ describe('reconf-nodejs Spec', function () {
             .get('/product-name/product-component/prop.name.3?instance=server.name')
             .reply(200, 'prop3');
 
-        reconf = reconf({
+        reconf.setup({
               host       : 'config-reader.reconf.url'
             , protocol   : 'http'
             , product    : 'product-name'
@@ -32,17 +32,17 @@ describe('reconf-nodejs Spec', function () {
     });
 
     afterAll(function () {
-        delete reconf.constructor.prototype.getPropName1;
-        delete reconf.constructor.prototype.getPropName2;
-        delete reconf.constructor.prototype.getPropName3;
+        delete reconf().constructor.prototype.getPropName1;
+        delete reconf().constructor.prototype.getPropName2;
+        delete reconf().constructor.prototype.getPropName3;
     });
 
     describe('Should add properties methods', function () {
         it('When reconf is initiated with a proper settings object', function (done) {
             Promise.all([
-                  reconf.getPropName1()
-                , reconf.getPropName2()
-                , reconf.getPropName3()
+                  reconf().getPropName1()
+                , reconf().getPropName2()
+                , reconf().getPropName3()
             ]).then(values => {
                 expect(values.length).toBe(3);
                 expect(values[0]).toBe('prop1');
