@@ -3,6 +3,11 @@
 const ReConf = require('../lib/reconf');
 
 describe('ReConf Spec', () => {
+    beforeEach(function () {
+        delete ReConf.prototype.testMehotd;
+        delete ReConf.prototype.testProperty;
+    });
+
     describe('Should returns a ReConf instance', () => {
         it('When called getInstance method', () => {
             let reconfInstace = ReConf.getInstance();

@@ -3,7 +3,7 @@
 const nock = require('nock');
 const Request = require('../lib/request');
 
-describe('Request', () => {
+describe('Request Spec', () => {
     beforeEach(() => {
         nock.cleanAll();
 

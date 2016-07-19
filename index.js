@@ -21,4 +21,4 @@
 
 'use strict';
 
-module.exports = require('./lib/boot');
+module.exports = require('./lib/reconf-nodejs');
