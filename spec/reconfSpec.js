@@ -1,51 +1,51 @@
 'use strict';
 
-describe('ReConf Spec', function () {
-    let ReConf = require('../lib/reconf');
+const ReConf = require('../lib/reconf');
 
-    describe('Should returns a ReConf instance', function () {
-        it('When called getInstance method', function () {
+describe('ReConf Spec', () => {
+    describe('Should returns a ReConf instance', () => {
+        it('When called getInstance method', () => {
             let reconfInstace = ReConf.getInstance();
 
             expect(reconfInstace).toEqual(jasmine.any(ReConf));
         });
     });
 
-    describe('Shouldn\'t set a new method/property', function () {
-        it('When "set" method it\'s called with no arguments', function () {
+    describe('Shouldn\'t set a new method/property', () => {
+        it('When "set" method it\'s called with no arguments', () => {
             ReConf.set();
 
             expect(Object.keys(ReConf.prototype).length).toBe(0);
         });
 
-        it('When "set" method it\'s called with a non string as name argument', function () {
+        it('When "set" method it\'s called with a non string as name argument', () => {
             ReConf.set(/[^a]String/, () => {});
 
             expect(Object.keys(ReConf.prototype).length).toBe(0);
         });
 
-        it('When "set" method it\'s called with a empty string as name argument', function () {
+        it('When "set" method it\'s called with a empty string as name argument', () => {
             ReConf.set('', () => {});
 
             expect(Object.keys(ReConf.prototype).length).toBe(0);
         });
     });
 
-    describe('Should set a new method/property', function () {
+    describe('Should set a new method/property', () => {
         let testMehotd, testProperty;
 
-        beforeEach(function () {
+        beforeEach(() => {
             testMehotd = () => {};
             testProperty = ['arrayprop'];
         });
 
-        it('When "set" method it\'s correctly whith a method', function () {
+        it('When "set" method it\'s correctly whith a method', () => {
             ReConf.set('testMehotd', testMehotd);
 
             expect(ReConf.prototype.testMehotd).toEqual(testMehotd);
         });
 
-        it('When "set" method it\'s correctly whith a property', function () {
+        it('When "set" method it\'s correctly whith a property', () => {
             ReConf.set('testProperty', testProperty);
 
             expect(ReConf.prototype.testProperty).toEqual(testProperty);
