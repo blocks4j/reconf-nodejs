@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "jasmine": "^2.4.1",
+    "nock": "^8.0.0",
     "nodemon": "^1.9.2"
   },
   "dependencies": {
