@@ -1,6 +1,6 @@
 {
   "name": "reconf-nodejs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Reconf client for NodeJS",
   "main": "index.js",
   "author": "Julio Corradi <jgcorradi@gmail.com>",
