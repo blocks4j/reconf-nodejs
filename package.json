@@ -28,7 +28,5 @@
     "nock": "^8.0.0",
     "nodemon": "^1.9.2"
   },
-  "dependencies": {
-    "bluebird": "^3.4.1"
-  }
+  "dependencies": {}
 }
