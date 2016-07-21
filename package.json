@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/blocks4j/reconf-nodejs#readme",
   "scripts": {
+    "git:push": "git push origin master --tags",
+    "release:major": "npm test && npm version major && npm run git:push",
+    "release:minor": "npm test && npm version minor && npm run git:push",
+    "release:patch": "npm test && npm version patch && npm run git:push",
     "dev:reload": "nodemon ./index",
     "test": "jasmine"
   },
