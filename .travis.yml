@@ -1,5 +1,4 @@
 language: node_js
 node_js:
-- '4.9.1' # Argon
 - '6.14.3' # Boron
 - '8.11.3' # Carbon
