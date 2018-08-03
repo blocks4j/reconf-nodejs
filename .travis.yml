@@ -1,8 +1,9 @@
 language: node_js
 node_js:
-- 4.2.4
-- 4.4.7
-- 6.3.0
+  - '7.10.0'
+  - '8.11.3' # Carbon
+  - '9.11.2'
+  - '10.8.0' # Future Dubnium
 deploy:
   provider: npm
   email: "jgcorradi@gmail.com"
