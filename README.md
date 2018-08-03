@@ -18,20 +18,27 @@ $ npm install --save reconf-nodejs
 
 ### Setup
 ```javascript
-let reconf = require('reconf-nodejs')
+let {setup} = require('reconf-nodejs')
 
 // setup
-reconf.setup({
-      host       : 'config-reader.reconf.url'
-    , protocol   : 'https'
-    , product    : 'product-name'
-    , component  : 'component-name'
-    , instance   : 'outside.server.name'
-    , properties : [
-          'prop.name.1'
-        , 'prop.name.2'
-        , 'prop.name.3'
-    ]
+setup({
+    protocol: 'https', // default is "http"
+    host: 'config-reader.reconf.url',
+    product: {
+        'product': {
+            'component': {
+                'property': 'Initial Value' // Can be "undefined"
+            }
+        },
+        'other-product': {
+            'dot.separated.component': {
+                'property': String,
+                'dot.separated.property': String,
+                'dash-separated-property': String
+            }
+        }
+    },
+    applicationUser: 'reconfUserApplication'
 });
 ```
 
@@ -50,84 +57,65 @@ Default: `http`
 If your server has an secure connection you can change the `HTTP` by `HTTPS` requests.
 
 #### product
-Type: `String`</br>
+Type: `Object`</br>
 Default: `undefined`
 
 The procudct name registered on ReConf client to represent your whole product.
 
 #### component
-Type: `String`</br>
+Type: `Object`</br>
 Default: `undefined`
 
 The component name registered on ReConf client in product area to represent your application.
 
-#### properties
-Type: `Array[String]`</br>
+#### property
+Type: `Any value convertible as JSON`</br>
 Default: `undefined`
 
-The properties name registered on ReConf client in component area that you'll need to use in yout application.
-Obs: The properties can be divided by ` `(sapces), `.`(dots), `-`(dashes) and `_`(underscore)s
-
-#### instance
-Type: `String`</br>
-Default: `os.hostname()`
-
-If you need to get values from a specif server instance you can change in this option
 
 ### Usage
-After setup, all configured properties will be available as `getter` as methods in `reconf()` module following the pattern:
+After setup, all configured properties will be available in `reconf()` module following the object notation pattern and will respond as `Promise` letting you deal with success and errors on your applications.
 
-Property name: `prop.name.1`</br>
-Getter method: `reconf().getPropName1`
+### Getting properties
 
-All the `getter` methods follow the `Promise` pattern, letting you deal with success and errors on your applications.
+#### Simple names
+Property name: `product / component / property`</br>
+Getter method: `reconf('product.component.property')`
+
+#### Dashed names
+Property name: `some-product / some-component / some-property`</br>
+Getter method: `reconf('some-product.some-component.some-property')`</br>
+Getter method: `reconf('some-product[some-component][some-property]')`
+
+#### Doted name
+Property name: `some.product / some.component / some.property`</br>
+Getter method: `reconf('some-product[some-component][some-property]')`
+
+### Setting properties
+
+#### Saving strings
+Property name: `product / component / property`</br>
+Setter method: `reconf('product.component.property', 'Hello world!')`
+
+#### Saving numbers
+Property name: `product / component / property`</br>
+Setter method: `reconf('product.component.property', 42)`
+
+#### Saving objects
+Property name: `product / component / property`</br>
+Setter method: `reconf('product.component.property', { foo : 'bar' })`
 
 #### Simple usage
 ```javascript
 let reconf = require('reconf-nodejs');
 
-reconf()
-    .getPropName1()
-    .then(propValue => {
-        console.log(propValue); // A string value
+reconf('product.component.property')
+    .then(propValues => {
+        console.log(propValues); // All values in array
     })
     .catch(err => {
         console.log(err); // Some error
     });
-```
-
-#### Handling with multiple properties
-```javascript
-let reconf = require('reconf-nodejs');
-
-Promise.all([
-      reconf().getPropName1()
-    , reconf().getPropName2()
-])
-.then(propValues => {
-    console.log(propValues); // All values in array
-})
-.catch(err => {
-    console.log(err); // Some error
-});
-```
-
-#### Using with [bluebird](https://www.npmjs.com/package/bluebird)
-```javascript
-// npm install -S bluebird
-let Promise = require('bluebird');
-let reconf = require('reconf-nodejs');
-
-Promise.all([
-      reconf().getPropName1()
-    , reconf().getPropName2()
-])
-.then(propValues => {
-    console.log(propValues); // All values in array
-})
-.catch(err => {
-    console.log(err); // Some error
-});
 ```
 
 #### Using on multiple files
@@ -135,19 +123,19 @@ When using on multiple "requires", you'll need setup ReConf just one time. The m
 ```javascript
 // config.js
 
-let reconf = require('reconf-nodejs');
+let {setup} = require('reconf-nodejs');
 
-reconf.setup({
-      host       : 'config-reader.reconf.url'
-    , protocol   : 'https'
-    , product    : 'product-name'
-    , component  : 'component-name'
-    , instance   : 'server.name'
-    , properties : [
-          'prop.name.1'
-        , 'prop.name.2'
-        , 'prop.name.3'
-    ]
+setup({
+    protocol: 'https', // default is "http"
+    host: 'config-reader.reconf.url',
+    product: {
+        'product': {
+            'component': {
+                'property': 'Initial Value' // Can be "undefined"
+            }
+        }
+    },
+    applicationUser: 'reconfUserApplication'
 });
 ```
 
@@ -156,9 +144,7 @@ reconf.setup({
 
 let reconf = require('reconf-nodejs');
 
-reconf().getPropName1().then(propValue => console.log(propValue));
-reconf().getPropName2().then(propValue => console.log(propValue));
-reconf().getPropName3().then(propValue => console.log(propValue));
+reconf('product.component.property').then(propValue => console.log(propValue));
 ```
 
 # License
