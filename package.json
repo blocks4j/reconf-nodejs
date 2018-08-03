@@ -20,15 +20,17 @@
   },
   "homepage": "https://github.com/blocks4j/reconf-nodejs#readme",
   "scripts": {
-    "dev:reload": "nodemon ./index",
-    "test": "jasmine"
+    "dev:reload": "jasmine-node ./spec/ --color --autotest --watch ./",
+    "test": "jasmine-node ./spec/ --color"
   },
   "devDependencies": {
-    "jasmine": "^2.4.1",
-    "nock": "^9.4.2",
-    "nodemon": "^1.9.2"
+    "jasmine-node": "^1.15.0",
+    "nock": "^9.4.3"
   },
   "dependencies": {
-    "node-fetch": "^2.1.2"
+    "dotcfg": "^1.7.6",
+    "is": "^3.2.1",
+    "request": "^2.87.0",
+    "request-promise-native": "^1.0.5"
   }
 }
